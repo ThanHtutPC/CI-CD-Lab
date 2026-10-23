@@ -7,12 +7,12 @@ def client():
     with app.test_client() as client:
         yield client
 
-def test_health(client):
-    rv = client.get('/health')
-    assert rv.status_code == 200
-    assert rv.get_json()['status'] == 'healthy'
+def test_health_endpoint(client):
+    response = client.get('/health')
+    assert response.status_code == 200
+    assert response.get_json()['status'] == 'healthy'
 
-def test_users_list(client):
-    rv = client.get('/api/users')
-    assert rv.status_code == 200
-    assert rv.get_json()['status'] == 'success'
+def test_users_endpoint(client):
+    response = client.get('/api/users')
+    assert response.status_code == 200
+    assert response.get_json()['status'] == 'success'
